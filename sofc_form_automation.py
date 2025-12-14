@@ -57,7 +57,7 @@ for row in non_processed_rows:
         print(f"{payment_type} payment type not supported, skipping row.")
         continue
 
-    answer = input(f'Process {payment_type} for {row[1]} ({row[3]})? (yes/no): ')
+    answer = input(f'Process {payment_type} submitted by {row[1]} ({row[3]})? (yes/no): ')
     if answer.lower() != 'yes':
         continue
 
@@ -67,6 +67,7 @@ for row in non_processed_rows:
     driver.get(links[payment_type])
     time.sleep(5)
 
+    # Selecting correct buttons
     if payment_type in ["Reimbursement", "Invoice"]:
         radio_buttons = driver.find_elements(By.XPATH, "//input[@type='radio']")
         for button in radio_buttons:
@@ -83,6 +84,8 @@ for row in non_processed_rows:
                 driver.execute_script("arguments[0].scrollIntoView(true);", button)
                 # time.sleep(0.5)
                 driver.execute_script("arguments[0].click();", button)
+
+    # Filling in text fields
 
     fields = driver.find_elements(By.XPATH, "//input | //textarea")
 
