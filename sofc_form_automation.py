@@ -5,6 +5,10 @@ import gspread
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from utils import get_non_processed, get_relevant_values
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ----------------------------
 # 1. Connect to Google Sheets
@@ -29,7 +33,7 @@ non_processed_rows = get_non_processed(rows)
 # ----------------------------
 
 # These are the general values in every completed form
-gen_values = ["Student Engineers' Council", "REDACTED"]
+gen_values = ["Student Engineers' Council", os.getenv('ACCOUNT_NUM')]
 
 # These are the links
 links = {
@@ -65,7 +69,7 @@ for row in non_processed_rows:
     full_values = gen_values + input_values
 
     driver.get(links[payment_type])
-    time.sleep(5)
+    time.sleep(3)
 
     # Selecting correct buttons
     if payment_type in ["Reimbursement", "Invoice"]:

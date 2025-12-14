@@ -1,3 +1,8 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 def get_non_processed(rows):
     non_processed = []
     for row in rows[1:-1]:  # Skip header row
@@ -6,11 +11,11 @@ def get_non_processed(rows):
     return non_processed
 
 subaccounts = {
-    "Executive": "REDACTED",
-    "Development": "REDACTED",
-    "External": "REDACTED",
-    "Internal": "REDACTED",
-    "Operations": "REDACTED"
+    "Executive": os.getenv('EXECUTIVE_SUBACCOUNT'),
+    "Development": os.getenv('DEVELOPMENT_SUBACCOUNT'),
+    "External": os.getenv('EXTERNAL_SUBACCOUNT'),
+    "Internal": os.getenv('INTERNAL_SUBACCOUNT'),
+    "Operations": os.getenv('OPERATIONS_SUBACCOUNT')
 }
 
 def get_relevant_values(row, payment_type):

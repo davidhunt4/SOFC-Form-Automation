@@ -9,8 +9,8 @@ The program proceeds **chronologically** through unprocessed payments in the SEC
 ## Setup
 
 1. Clone this repository into Visual Studio Code.
-2. Get `handy-cell-478015-u7-397b5b7f6c77.json` from someone who has it.
-3. Put that file into this folder on your device.
+2. Get `.env` and `handy-cell-478015-u7-397b5b7f6c77.json` and from someone who has them.
+3. Put those files into this folder on your device.
 4. Run `pip install -r requirements.txt` in VSCode terminal.
 
 ## Usage
