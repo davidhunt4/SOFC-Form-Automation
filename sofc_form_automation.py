@@ -49,6 +49,7 @@ maps = {
     "SOFC Credit Card Payment (must be submitted 3-4 weeks in advance)": [0, 1, 6, 14, 5, 2, 4, 7, 9]
 }
 
+# Open the Chrome window
 driver = webdriver.Chrome()
 
 for row in non_processed_rows:
@@ -65,13 +66,13 @@ for row in non_processed_rows:
     if answer.lower() != 'yes':
         continue
 
-    input_values = get_relevant_values(row, payment_type)
+    input_values = get_relevant_values(row, payment_type) # get values from this row in the sheet
     full_values = gen_values + input_values + [0] * 9 # this is the list of EVERY value to put into the form
 
-    driver.get(links[payment_type])
+    driver.get(links[payment_type]) # open up the correct link in Chrome window
     time.sleep(3)
 
-    # Selecting correct buttons
+    # Selecting correct buttons (for Direct Deposit, TAMU Student, Not Affiliated)
     if payment_type in ["Reimbursement", "Invoice"]:
         radio_buttons = driver.find_elements(By.XPATH, "//input[@type='radio']")
         for button in radio_buttons:
