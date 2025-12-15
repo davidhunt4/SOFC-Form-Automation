@@ -44,8 +44,8 @@ links = {
 
 # These arrays map the input values to the form field numbers
 maps = {
-    "Reimbursement": [0, 1, 7, 17, 26, 2, 8, 9, 11, 10],
-    "Invoice": [0, 1, 17, 26, 2, 7, 8, 9, 11],
+    "Reimbursement": [0, 1, 7, 17, 26, 2, 8, 9, 11, 10, 18, 19, 20, 21, 22, 23, 24, 25, 27],
+    "Invoice": [0, 1, 17, 26, 2, 7, 8, 9, 11, 18, 19, 20, 21, 22, 23, 24, 25, 27],
     "SOFC Credit Card Payment (must be submitted 3-4 weeks in advance)": [0, 1, 6, 14, 5, 2, 4, 7, 9]
 }
 
@@ -66,7 +66,7 @@ for row in non_processed_rows:
         continue
 
     input_values = get_relevant_values(row, payment_type)
-    full_values = gen_values + input_values
+    full_values = gen_values + input_values + [0] * 9 # this is the list of EVERY value to put into the form
 
     driver.get(links[payment_type])
     time.sleep(3)
