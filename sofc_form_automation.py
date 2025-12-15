@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 import time
 import gspread
 from google.oauth2.service_account import Credentials
@@ -49,8 +50,11 @@ maps = {
     "SOFC Credit Card Payment (must be submitted 3-4 weeks in advance)": [0, 1, 6, 14, 5, 2, 4, 7, 9]
 }
 
-# Open the Chrome window
-driver = webdriver.Chrome()
+# Open the Chrome window with Chrome profile
+options = Options()
+profile_path = os.path.abspath("selenium-chrome-data")
+options.add_argument(f"user-data-dir={profile_path}")
+driver = webdriver.Chrome(options=options)
 
 for row in non_processed_rows:
     # First, identify what kind of payment and get relevant values

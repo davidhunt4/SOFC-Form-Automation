@@ -3,3 +3,4 @@ handy-cell-478015-u7-397b5b7f6c77.json
 __pycache__/
 *.ipynb
 .env
+selenium-chrome-data/
