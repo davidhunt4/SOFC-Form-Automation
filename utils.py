@@ -6,7 +6,7 @@ load_dotenv()
 def get_non_processed(rows):
     non_processed = []
     for row in rows[1:-1]:  # Skip header row
-        if row[31] == "": # this is the column that gets the date in Expense Report
+        if row[36] == "": # this is the column that gets the date in Expense Report
             non_processed.append(row)
     return non_processed
 

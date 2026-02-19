@@ -36,7 +36,7 @@ non_processed_rows = get_non_processed(rows)
 # These are the general values in every completed form
 gen_values = ["Student Engineers' Council", os.getenv('ACCOUNT_NUM')]
 
-# These are the links
+# These are the links to the forms that get filled
 links = {
     "Reimbursement": "https://tamusignature.na4.adobesign.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCVLKBrDc_cWAihnWcWMVHUGPdRT5kRj6SzN56sQzngdaeHdgaQPcPaq27JukrcVKc*",
     "Invoice": "https://tamusignature.na4.adobesign.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCVLKBrDc_cWAihnWcWMVHUGPdRT5kRj6SzN56sQzngdaeHdgaQPcPaq27JukrcVKc*",
@@ -54,6 +54,8 @@ maps = {
 options = Options()
 profile_path = os.path.abspath("selenium-chrome-data")
 options.add_argument(f"user-data-dir={profile_path}")
+options.add_argument("--no-first-run")
+options.add_argument("--no-default-browser-check")
 driver = webdriver.Chrome(options=options)
 
 for row in non_processed_rows:
@@ -110,5 +112,4 @@ for row in non_processed_rows:
     confirm = input('Form Submitted and Signed? (yes/no): ')
     while confirm.lower() != 'yes':
         confirm = input('Form Submitted and Signed? (yes/no): ')
-    
 print('All rows completed!')
